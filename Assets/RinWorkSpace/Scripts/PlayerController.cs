@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2D;
+	Sprite[] walk;
+	SpriteRenderer sprite;
+	Animator animator;
+	private new Rigidbody2D rigidbody2D;
 	bool isJumping;
+	
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();	
     }
 
     void Update()
     {
+		
 		Walk();
 		Jump();
     }
@@ -21,7 +28,25 @@ public class PlayerController : MonoBehaviour
 	///</summary>
 	private void Walk()
 	{
-		float InputX = Input.GetAxisRaw("Horizontal");
+		if(Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow))
+		{
+			Vector2 pos = transform.position;
+			pos.x += 0.01f;
+			transform.position = pos;
+			animator.Play("PlayerRun");
+		}
+		else if(Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow))
+		{
+			Vector2 pos = transform.position;
+			pos.x -= 0.01f;
+			transform.position = pos;
+
+			animator.Play("PlayerRun");
+		}
+		else
+		{
+			animator.Play("PlayerIdle");
+		}
 		
 	}
 	///<summary>
