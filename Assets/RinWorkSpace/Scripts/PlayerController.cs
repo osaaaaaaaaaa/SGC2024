@@ -21,22 +21,8 @@ public class PlayerController : MonoBehaviour
 	///</summary>
 	private void Walk()
 	{
-		//右移動
-		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-		{
-			Debug.Log("右移動");
-			Vector2 pos = transform.position;
-			pos.x += 0.01f;
-			transform.position = pos;
-		}
-		//左移動
-		else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-		{
-			Debug.Log("左移動");
-			Vector2 pos = transform.position;
-			pos.x -= 0.01f;
-			transform.position = pos;
-		}
+		float InputX = Input.GetAxisRaw("Horizontal");
+		
 	}
 	///<summary>
 	///Playerのジャンプ
