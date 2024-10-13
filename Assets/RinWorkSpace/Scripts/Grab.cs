@@ -50,7 +50,7 @@ public class Grab : MonoBehaviour
 				{
 					hit = hitRight;
 				}
-				else if (hitRight.collider != null && hitRight.collider.tag == "Item")
+				else if (hitRight.collider != null && hitRight.collider.tag == "Kaitenkai2")
 				{
 					hit = hitRight;
 				}
@@ -62,13 +62,13 @@ public class Grab : MonoBehaviour
 				{
 					hit = hitLeft;
 				}
-				else if (hitLeft.collider != null && hitLeft.collider.tag == "Item")
+				else if (hitLeft.collider != null && hitLeft.collider.tag == "Kaitenkai2")
 				{
 					hit = hitLeft;
 				}
 				/*Debug.DrawRay(hit.collider.tag);*/
 				//åÆÇ…ê⁄êGÇµÇΩÇÁè„Ç…éùÇøè„Ç∞ÇÈ
-				if (hit.collider != null && hit.collider.tag == "Key" || hit.collider.tag == "Water" || hit.collider.tag == "Item")
+				if (hit.collider != null && hit.collider.tag == "Key" || hit.collider.tag == "Water" || hit.collider.tag == "Kaitenkai2")
 				{
 					animator.Play("HasItem");
 					Debug.Log("éùÇ¡ÇΩ");
@@ -108,11 +108,25 @@ public class Grab : MonoBehaviour
 			grabObj = null;
 			hasItem = false;
 		}
-
+		if (player.isJumping)
+		{
+			hitDown = Physics2D.Raycast(downRayPoint.position, transform.up, -rayDistance);
+			if (hitDown.collider != null && hitDown.collider.tag == "Ground")
+			{
+				hit = hitDown;
+			}
+			if (hit.collider != null && hit.collider.tag == "Ground")
+			{
+				
+					//ínñ Ç∆ÇÃê⁄êGämîF
+					player.isJumping = true;
+				
+			}
+		}
 	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		//if (player.isGrounded)
+		//if (player.isJump)
 		{
 			hitDown = Physics2D.Raycast(downRayPoint.position, transform.up, -rayDistance);
 			if (hitDown.collider != null && hitDown.collider.tag == "Ground")

@@ -9,7 +9,8 @@ TagManager:
   - Goal
   - Fire
   - Water
-  - Item
+  - Kaitenkai1
+  - Kaitenkai2
   layers:
   - Default
   - TransparentFX

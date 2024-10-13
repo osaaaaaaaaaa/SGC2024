@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 1599986578}
   m_Layer: 0
   m_Name: kaiten_kai_1
-  m_TagString: Untagged
+  m_TagString: Kaitenkai1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1094,9 +1094,10 @@ GameObject:
   - component: {fileID: 1654555163}
   - component: {fileID: 1654555162}
   - component: {fileID: 1654555161}
+  - component: {fileID: 1654555165}
   m_Layer: 0
   m_Name: kaiten_kai_2
-  m_TagString: Item
+  m_TagString: Kaitenkai2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1240,6 +1241,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1654555165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654555160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1245e0b17e4c647a5f531bb402c7d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1682035572
 GameObject:
   m_ObjectHideFlags: 0
