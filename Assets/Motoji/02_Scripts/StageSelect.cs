@@ -16,7 +16,7 @@ public class StageSelect : MonoBehaviour
         posSet[4] = new Vector3( 3.84f, -2.5f, 0.0f);
         nNowSelect = 0;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -70,6 +70,7 @@ public class StageSelect : MonoBehaviour
         {
             ChangePos();
         }
+        
     }
     
     void ChangePos()
