@@ -70,7 +70,7 @@ public class Grab : MonoBehaviour
 				//åÆÇ…ê⁄êGÇµÇΩÇÁè„Ç…éùÇøè„Ç∞ÇÈ
 				if (hit.collider != null && hit.collider.tag == "Key" || hit.collider.tag == "Water" || hit.collider.tag == "Kaitenkai2")
 				{
-					animator.Play("HasItem");
+					//animator.Play("HasItem");
 					Debug.Log("éùÇ¡ÇΩ");
 					grabObj = hit.collider.gameObject;
 					grabObj.GetComponent<Rigidbody2D>().isKinematic = true;
@@ -108,7 +108,7 @@ public class Grab : MonoBehaviour
 			grabObj = null;
 			hasItem = false;
 		}
-		if (player.isJumping)
+		/*if (player.isJumping)
 		{
 			hitDown = Physics2D.Raycast(downRayPoint.position, transform.up, -rayDistance);
 			if (hitDown.collider != null && hitDown.collider.tag == "Ground")
@@ -122,7 +122,7 @@ public class Grab : MonoBehaviour
 					player.isJumping = true;
 				
 			}
-		}
+		}*/
 	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
