@@ -8,18 +8,24 @@ public class TitleButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
+
     public void OnClick()
     {
-          // メインシーンへ移動
-          SceneManager.LoadScene("GameScene");
+        // メインシーンへ移動
+        SceneManager.LoadScene("GameScene3");
+    }
+
+    public void OnSelectStageButton()
+    {
+        // メインシーンへ移動
+        SceneManager.LoadScene("StageSelect");
     }
 }
