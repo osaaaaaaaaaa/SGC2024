@@ -8,13 +8,17 @@ public class PlayerController : MonoBehaviour
 	Animator animator;
 	private new Rigidbody2D rigidbody2D;
 	public bool isJumping;
-	bool isGrounded;
+	public bool isGrounded;
 	[SerializeField] float speed = 2.0f;
 	[SerializeField] float jumpPower = 5.0f;
+	AudioSource se;
+	[SerializeField] AudioClip walk;
+	[SerializeField] AudioClip jump;
 	void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();	
+		se = GetComponent<AudioSource>();
     }
 	private void Update()
 	{
@@ -33,21 +37,34 @@ public class PlayerController : MonoBehaviour
 		{
 			rigidbody2D.velocity = new Vector2(speed, rigidbody2D.velocity.y);
 			if (isJumping)
+			{
 				animator.Play("PlayerRun");
+				
+					//se.clip = walk;
+					//se.Play();
+				
+			}
 		}
 		//左入力で左向きに動く
 		else if (horizontalKey < 0)
 		{
 			rigidbody2D.velocity = new Vector2(-speed, rigidbody2D.velocity.y);
 			if (isJumping)
+			{
 				animator.Play("PlayerRun");
+					//se.clip = walk;
+					//se.Play();
+			}
 		}
 		//ボタンを話すと止まる
 		else
 		{
 			rigidbody2D.velocity = new Vector2(0, rigidbody2D.velocity.y);
 			if (isJumping)
+			{
 				animator.Play("PlayerIdle");
+				
+			}
 		}	
 		
 		/*if(Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow))
@@ -83,25 +100,27 @@ public class PlayerController : MonoBehaviour
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, jumpPower);
 				isJumping = false;
 				animator.Play("PlayerJump");
+				se.clip = jump;
+				se.Play();
 			}
 		}
 	}
-	private void OnCollisionEnter2D(Collision2D collision)
+	/*private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if(collision.gameObject.CompareTag("Ground"))
 		{
-			/*if (!isJumping)
+			if (!isJumping)
 			{
 				isGrounded = false;
 				animator.Play("PlayerFall");
 				Vector2 pos = transform.position;
-				pos.y += 0.1f;
+				pos.y += 0.01f;
 				transform.position = pos;
 				isGrounded = true;
-			}*/
+			}
 			//地面との接触確認
 			//isJumping = true;
 		}
 		
-	}
+	}*/
 }

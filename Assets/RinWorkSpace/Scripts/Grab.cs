@@ -5,6 +5,10 @@ using UnityEngine;
 public class Grab : MonoBehaviour
 {
 	PlayerController player;
+	BoxCollider2D boxCollider;
+	Animator animator;
+	AudioSource se;
+	[SerializeField] AudioClip haveItem;
 
 	[SerializeField] private Transform grabPoint;
 	[SerializeField] private Transform rightRayPoint;
@@ -24,6 +28,9 @@ public class Grab : MonoBehaviour
 		//grabPoint = GameObject.Find("GrabPoint").transform;
 		//rayPoint = GameObject.Find("RayPoint").transform;
 		player = GetComponent<PlayerController>();
+		boxCollider = GetComponent<BoxCollider2D>();
+		animator = GetComponent<Animator>();
+		se = GetComponent<AudioSource>();
 	}
 	void Update()
 	{
@@ -39,24 +46,43 @@ public class Grab : MonoBehaviour
 				{
 					hit = hitRight;
 				}
+				else if (hitRight.collider != null && hitRight.collider.tag == "Water")
+				{
+					hit = hitRight;
+				}
+				else if (hitRight.collider != null && hitRight.collider.tag == "Item")
+				{
+					hit = hitRight;
+				}
 				else if (hitLeft.collider != null && hitLeft.collider.tag == "Key")
+				{
+					hit = hitLeft;
+				}
+				else if (hitLeft.collider != null && hitLeft.collider.tag == "Water")
+				{
+					hit = hitLeft;
+				}
+				else if (hitLeft.collider != null && hitLeft.collider.tag == "Item")
 				{
 					hit = hitLeft;
 				}
 				/*Debug.DrawRay(hit.collider.tag);*/
 				//鍵に接触したら上に持ち上げる
-				if (hit.collider != null && hit.collider.tag == "Key")
+				if (hit.collider != null && hit.collider.tag == "Key" || hit.collider.tag == "Water" || hit.collider.tag == "Item")
 				{
+					animator.Play("HasItem");
 					Debug.Log("持った");
 					grabObj = hit.collider.gameObject;
 					grabObj.GetComponent<Rigidbody2D>().isKinematic = true;
 					grabObj.transform.position = grabPoint.position;
 					grabObj.transform.SetParent(transform);
 					hasItem = true;
+					se.clip = haveItem;
+					se.Play();
 				}
 			}
 			
-			//Eを押したら右に鍵を置く
+			
 		}
 		//Qを押したら左に鍵を置く
 		if (Input.GetKeyDown(KeyCode.Q) && hasItem)
@@ -70,6 +96,7 @@ public class Grab : MonoBehaviour
 			grabObj = null;
 			hasItem = false;
 		}
+		//Eを押したら右に鍵を置く
 		else if (Input.GetKeyDown(KeyCode.E) && hasItem)
 		{
 			Debug.Log("押された");
@@ -85,17 +112,20 @@ public class Grab : MonoBehaviour
 	}
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		hitDown = Physics2D.Raycast(downRayPoint.position, transform.up, -rayDistance);
-		if (hitDown.collider != null && hitDown.collider.tag == "Ground")
+		//if (player.isGrounded)
 		{
-			hit = hitDown;
-		}
-		if (hit.collider != null && hit.collider.tag == "Ground")
-		{
-			if (collision.gameObject.CompareTag("Ground"))
+			hitDown = Physics2D.Raycast(downRayPoint.position, transform.up, -rayDistance);
+			if (hitDown.collider != null && hitDown.collider.tag == "Ground")
 			{
-				//地面との接触確認
-				player.isJumping = true;
+				hit = hitDown;
+			}
+			if (hit.collider != null && hit.collider.tag == "Ground")
+			{
+				if (collision.gameObject.CompareTag("Ground"))
+				{
+					//地面との接触確認
+					player.isJumping = true;
+				}
 			}
 		}
 	}
