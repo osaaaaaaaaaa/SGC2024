@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class TitleSceneManager : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class TitleSceneManager : MonoBehaviour
     //Change to AnyScene
     void ChangeScene()
     {
-        SceneManager.LoadScene("GameScene");
+        //SceneManager.LoadScene("GameScene");
+        FadeManager.Instance.LoadScene("GameScene1", 1.0f);
     }
 }

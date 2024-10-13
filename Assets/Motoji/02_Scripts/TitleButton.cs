@@ -20,12 +20,14 @@ public class TitleButton : MonoBehaviour
     public void OnClick()
     {
         // メインシーンへ移動
-        SceneManager.LoadScene("GameScene3");
+        FadeManager.Instance.LoadScene("GameScene1", 1.0f);
+
     }
 
     public void OnSelectStageButton()
     {
         // メインシーンへ移動
-        SceneManager.LoadScene("StageSelect");
+        FadeManager.Instance.LoadScene("StageSelect", 1.0f);
+
     }
 }
